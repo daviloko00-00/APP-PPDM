@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+
+import {
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_700Bold,
+} from "@expo-google-fonts/playfair-display";
+
+import {
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+} from "@expo-google-fonts/plus-jakarta-sans";
+
+import TabNavigator from "./src/navigation/TabNavigator";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [fontsLoaded] = useFonts({
+        PlayfairDisplay: PlayfairDisplay_400Regular,
+        PlayfairDisplayBold: PlayfairDisplay_700Bold,
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        PlusJakartaSans: PlusJakartaSans_400Regular,
+        PlusJakartaSansMedium: PlusJakartaSans_500Medium,
+        PlusJakartaSansSemiBold: PlusJakartaSans_600SemiBold,
+        PlusJakartaSansBold: PlusJakartaSans_700Bold,
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+    return (
+        <NavigationContainer>
+            <TabNavigator />
+        </NavigationContainer>
+    );
+}
