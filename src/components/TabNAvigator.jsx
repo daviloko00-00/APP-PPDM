@@ -37,7 +37,7 @@ export default function TabNavigator() {
 
                     if (route.name === "Início") {
                         iconName = focused ? "home" : "home-outline";
-                    } {/*else if (route.name === "Personagens") {
+                    } else if (route.name === "Personagens") {
                         iconName = focused
                             ? "people"
                             : "people-outline";
@@ -50,7 +50,7 @@ export default function TabNavigator() {
                             ? "school"
                             : "school-outline";
                     }
-*/}
+
                     return (
                         <Ionicons
                             name={iconName}
@@ -66,7 +66,7 @@ export default function TabNavigator() {
                 component={HomeScreen}
             />
 
-            <Tab.Screen
+            {/* <Tab.Screen
                 name="Personagens"
                 component={PersonagensScreen}
             />
@@ -80,6 +80,7 @@ export default function TabNavigator() {
                 name="Hogwarts"
                 component={HogwartsScreen}
             />
+                */}
         </Tab.Navigator>
     );
 }
