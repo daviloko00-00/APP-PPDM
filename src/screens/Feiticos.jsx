@@ -193,6 +193,16 @@ export default function SpellScreen() {
 }
 
 const styles = StyleSheet.create({
+
+    useLabel: {
+        fontFamily: "PlusJakartaSansBold",
+        fontSize: 10,
+        textTransform: "uppercase",
+        letterSpacing: 2,
+        color: "#D4AF37",
+        marginBottom: 4,
+    },
+
     cardLabel: {
         fontFamily: "PlusJakartaSansBold",
         fontSize: 10,
@@ -316,7 +326,7 @@ const styles = StyleSheet.create({
     cardUse: {
         fontFamily: "PlusJakartaSans",
         fontSize: 11,
-        color: "#EAD7BA70",
+        color: "#fff",
     },
 
     //  Empty
