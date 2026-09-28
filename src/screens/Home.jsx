@@ -131,6 +131,7 @@ export default function HomeScreen() {
                         <Text style={homeStyles.subtitle}>
                             Explore a magia do mundo mágico de Harry Potter
                         </Text>
+                        <Text style={homeStyles.subtitle}>api utilizada : https://potterapi-fedeperin.vercel.app/pt/</Text>
                     </View>
 
                     <View style={homeStyles.divider} />
