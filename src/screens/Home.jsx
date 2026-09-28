@@ -13,6 +13,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { getBooks, getCharacters } from "../services/api";
+import {homeStyles} from "./Home.styles"
+import BookCard from "../components/BookCard/BookCard";
+import CharacterCard from "../components/CharacterCard/CharacterCard";
 
 // ─── Cores de cada casa ────────────────────────────────────────────────────────
 const HOUSE_COLORS = {
@@ -66,32 +69,7 @@ function FeaturedCharacterCard({ character }) {
     );
 }
 
-// ─── Card de Livro ────────────────────────────────────────────────────────────
-function BookCard({ book }) {
-    return (
-        <View style={styles.bookCard}>
-            <Image
-                source={{ uri: book.cover }}
-                style={styles.bookCover}
-                resizeMode="cover"
-            />
-            <LinearGradient
-                colors={["transparent", "#0D1117EE"]}
-                style={styles.bookGradient}
-            />
-            <View style={styles.bookInfo}>
-                <Text style={styles.bookNumber}>Livro {book.number}</Text>
-                <Text style={styles.bookTitle} numberOfLines={2}>
-                    {book.title}
-                </Text>
-                <View style={styles.bookMeta}>
-                    <Ionicons name="book-outline" size={11} color="#D4AF37" />
-                    <Text style={styles.bookPages}> {book.pages} pgs</Text>
-                </View>
-            </View>
-        </View>
-    );
-}
+
 
 // ─── Tela Principal ───────────────────────────────────────────────────────────
 export default function HomeScreen() {
@@ -129,10 +107,10 @@ export default function HomeScreen() {
 
     if (loading) {
         return (
-            <SafeAreaView style={styles.safeArea}>
-                <View style={styles.loadingContainer}>
+            <SafeAreaView style={homeStyles.safeArea}>
+                <View style={homeStyles.loadingContainer}>
                     <ActivityIndicator size="large" color="#D4AF37" />
-                    <Text style={styles.loadingText}>Carregando magia…</Text>
+                    <Text style={homeStyles.loadingText}>Carregando magia…</Text>
                 </View>
             </SafeAreaView>
         );
@@ -141,41 +119,41 @@ export default function HomeScreen() {
     const featured = characters[featuredIndex];
 
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={homeStyles.safeArea}>
             <ScrollView
-                style={styles.scroll}
+                style={homeStyles.scroll}
                 showsVerticalScrollIndicator={false}
             >
-                <View style={styles.container}>
-                    <View style={styles.heading}>
-                        <Text style={styles.eyebrow}>HARRY POTTER APP</Text>
-                        <Text style={styles.title}>Bem-vindo(a)!!</Text>
-                        <Text style={styles.subtitle}>
+                <View style={homeStyles.container}>
+                    <View style={homeStyles.heading}>
+                        <Text style={homeStyles.eyebrow}>HARRY POTTER APP</Text>
+                        <Text style={homeStyles.title}>Bem-vindo(a)!!</Text>
+                        <Text style={homeStyles.subtitle}>
                             Explore a magia do mundo mágico de Harry Potter
                         </Text>
                     </View>
 
-                    <View style={styles.divider} />
+                    <View style={homeStyles.divider} />
 
-                    <Text style={styles.sectionTitle}>✨ Personagem do Momento</Text>
+                    <Text style={homeStyles.sectionTitle}>Personagem do Momento</Text>
                     {featured && (
                         <FeaturedCharacterCard character={featured} />
                     )}
 
-                    <View style={styles.dotsRow}>
+                    <View style={homeStyles.dotsRow}>
                         {characters.map((_, i) => (
                             <View
                                 key={i}
                                 style={[
-                                    styles.dot,
-                                    i === featuredIndex && styles.dotActive,
+                                    homeStyles.dot,
+                                    i === featuredIndex && homeStyles.dotActive,
                                 ]}
                             />
                         ))}
                     </View>
 
-                    <Text style={[styles.sectionTitle, { marginTop: 28 }]}>
-                        📚 Os Livros
+                    <Text style={[homeStyles.sectionTitle, { marginTop: 28 }]}>
+                        Principais Livros
                     </Text>
                 </View>
 
@@ -184,26 +162,26 @@ export default function HomeScreen() {
                     keyExtractor={(item) => String(item.index)}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.bookList}
+                    contentContainerStyle={homeStyles.bookList}
                     renderItem={({ item }) => <BookCard book={item} />}
                 />
 
-                <View style={styles.container}>
-                    <Text style={[styles.sectionTitle, { marginTop: 8 }]}>
-                        🔮 O Universo em Números
+                <View style={homeStyles.container}>
+                    <Text style={[homeStyles.sectionTitle, { marginTop: 8 }]}>
+                        O Universo em Números
                     </Text>
-                    <View style={styles.statsRow}>
-                        <View style={styles.statCard}>
-                            <Text style={styles.statNumber}>{books.length}</Text>
-                            <Text style={styles.statLabel}>Livros</Text>
+                    <View style={homeStyles.statsRow}>
+                        <View style={homeStyles.statCard}>
+                            <Text style={homeStyles.statNumber}>{books.length}</Text>
+                            <Text style={homeStyles.statLabel}>Livros</Text>
                         </View>
-                        <View style={styles.statCard}>
-                            <Text style={styles.statNumber}>
+                        <View style={homeStyles.statCard}>
+                            <Text style={homeStyles.statNumber}>
                                 {characters.length}+
                             </Text>
-                            <Text style={styles.statLabel}>Personagens</Text>
+                            <Text style={homeStyles.statLabel}>Personagens</Text>
                         </View>
-                        <View style={styles.statCard}>
+                        <View style={homeStyles.statCard}>
                             <Text style={styles.statNumber}>4</Text>
                             <Text style={styles.statLabel}>Casas</Text>
                         </View>
@@ -211,7 +189,7 @@ export default function HomeScreen() {
 
                     <View style={styles.footer}>
                         <Text style={styles.footerText}>
-                            ⚡ "É a nossa escolha que mostra o que realmente somos,
+                        "É a nossa escolha que mostra o que realmente somos,
                             muito mais do que nossas habilidades."
                         </Text>
                         <Text style={styles.footerAuthor}>— Alvo Dumbledore</Text>
