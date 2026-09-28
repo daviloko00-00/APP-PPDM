@@ -5,8 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../screens/Home";
 import PersonagensScreen from "../screens/Personagens";
 import Spells from "../screens/Feiticos";
-// import FeiticosScreen from "../screens/Feiticos";
-// import CasasScreen from "../screens/Casas";
 
 const Tab = createBottomTabNavigator();
 
@@ -61,7 +59,6 @@ export default function TabNavigator() {
             <Tab.Screen name="Início" component={HomeScreen} />
             <Tab.Screen name="Personagens" component={PersonagensScreen} />
             <Tab.Screen name="Feitiços" component={Spells} />
-            {/* <Tab.Screen name="Hogwarts" component={CasasScreen} /> */}
         </Tab.Navigator>
     );
 }
