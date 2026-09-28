@@ -18,14 +18,34 @@ function SpellCard({ spell }) {
             style={styles.card}
             activeOpacity={0.8}
         >
-                <View style={styles.cardBody}>
-                    <Text style={styles.cardName}>
-                        {spell.spell}
-                    </Text>
-                    <Text style={styles.cardUse}>
-                        {spell.use}
-                    </Text>
-                </View>
+
+
+            <View style={styles.cardBody}>
+                <Text style={styles.cardLabel}>
+                    FEITIÇO
+                </Text>
+
+                <Text style={styles.cardName}>
+                    {spell.spell}
+                </Text>
+
+                <View style={styles.divider} />
+
+                <Text style={styles.useLabel}>
+                    Efeito
+                </Text>
+
+                <Text style={styles.cardUse}>
+                    {spell.use}
+                </Text>
+            </View>
+
+            <Ionicons
+                name="chevron-forward"
+                size={18}
+                color="#D4AF3760"
+                style={styles.arrow}
+            />
         </TouchableOpacity>
     );
 }
@@ -112,7 +132,7 @@ export default function SpellScreen() {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-            
+
             <View style={styles.header}>
                 <Text style={styles.eyebrow}>HARRY POTTER APP</Text>
                 <Text style={styles.title}>Feitiços</Text>
@@ -146,9 +166,7 @@ export default function SpellScreen() {
             <FlatList
                 data={filtered}
                 keyExtractor={(item) => String(item.index)}
-                numColumns={2}
                 contentContainerStyle={styles.grid}
-                columnWrapperStyle={styles.gridRow}
                 showsVerticalScrollIndicator={false}
                 onEndReachedThreshold={0.3}
                 ListFooterComponent={renderFooter}
@@ -159,22 +177,31 @@ export default function SpellScreen() {
                             size={48}
                             color="#D4AF3740"
                         />
+
                         <Text style={styles.emptyText}>
                             Nenhum feitiço invocado
                         </Text>
                     </View>
                 }
                 renderItem={({ item }) => (
-                    <SpellCard
-                        spell={item}
-                    />
+                    <SpellCard spell={item} />
                 )}
             />
+
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    cardLabel: {
+        fontFamily: "PlusJakartaSansBold",
+        fontSize: 10,
+        textTransform: "uppercase",
+        letterSpacing: 2,
+        color: "#D4AF37",
+        marginBottom: 4,
+    },
+
     safeArea: {
         flex: 1,
         backgroundColor: "#0D1117",
