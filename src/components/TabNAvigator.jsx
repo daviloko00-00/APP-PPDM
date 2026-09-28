@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
 import HomeScreen from "../screens/Home";
-// import PersonagensScreen from "../screens/PersonagensScreen";
-// import FeiticosScreen from "../screens/FeiticosScreen";
-// import HogwartsScreen from "../screens/HogwartsScreen";
+import PersonagensScreen from "../screens/Personagens";
+// import FeiticosScreen from "../screens/Feiticos";
+// import CasasScreen from "../screens/Casas";
 
 const Tab = createBottomTabNavigator();
 
@@ -38,17 +38,13 @@ export default function TabNavigator() {
                     if (route.name === "Início") {
                         iconName = focused ? "home" : "home-outline";
                     } else if (route.name === "Personagens") {
-                        iconName = focused
-                            ? "people"
-                            : "people-outline";
+                        iconName = focused ? "people" : "people-outline";
                     } else if (route.name === "Feitiços") {
                         iconName = focused
                             ? "sparkles"
                             : "sparkles-outline";
                     } else if (route.name === "Hogwarts") {
-                        iconName = focused
-                            ? "school"
-                            : "school-outline";
+                        iconName = focused ? "school" : "school-outline";
                     }
 
                     return (
@@ -61,26 +57,13 @@ export default function TabNavigator() {
                 },
             })}
         >
-            <Tab.Screen
-                name="Início"
-                component={HomeScreen}
-            />
+            <Tab.Screen name="Início" component={HomeScreen} />
+            <Tab.Screen name="Personagens" component={PersonagensScreen} />
 
-            {/* <Tab.Screen
-                name="Personagens"
-                component={PersonagensScreen}
-            />
-
-            <Tab.Screen
-                name="Feitiços"
-                component={FeiticosScreen}
-            />
-
-            <Tab.Screen
-                name="Hogwarts"
-                component={HogwartsScreen}
-            />
-                */}
+            {/* Descomente conforme criar as telas:
+            <Tab.Screen name="Feitiços" component={FeiticosScreen} />
+            <Tab.Screen name="Hogwarts" component={CasasScreen} />
+            */}
         </Tab.Navigator>
     );
 }
