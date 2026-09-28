@@ -19,14 +19,33 @@ function SpellCard({ spell }) {
             style={feiticosStyle.card}
             activeOpacity={0.8}
         >
-                <View style={feiticosStyle.cardBody}>
-                    <Text style={feiticosStyle.cardName}>
-                        {spell.spell}
-                    </Text>
-                    <Text style={feiticosStyle.cardUse}>
-                        {spell.use}
-                    </Text>
-                </View>
+
+            <View style={styles.cardBody}>
+                <Text style={styles.cardLabel}>
+                    FEITIÇO
+                </Text>
+
+                <Text style={styles.cardName}>
+                    {spell.spell}
+                </Text>
+
+                <View style={styles.divider} />
+
+                <Text style={styles.useLabel}>
+                    Efeito
+                </Text>
+
+                <Text style={styles.cardUse}>
+                    {spell.use}
+                </Text>
+            </View>
+
+            <Ionicons
+                name="chevron-forward"
+                size={18}
+                color="#D4AF3760"
+                style={styles.arrow}
+            />
         </TouchableOpacity>
     );
 }
@@ -147,9 +166,7 @@ export default function SpellScreen() {
             <FlatList
                 data={filtered}
                 keyExtractor={(item) => String(item.index)}
-                numColumns={2}
-                contentContainerStyle={feiticosStyle.grid}
-                columnWrapperStyle={feiticosStyle.gridRow}
+                contentContainerStyle={styles.grid}
                 showsVerticalScrollIndicator={false}
                 onEndReachedThreshold={0.3}
                 ListFooterComponent={renderFooter}
@@ -166,11 +183,10 @@ export default function SpellScreen() {
                     </View>
                 }
                 renderItem={({ item }) => (
-                    <SpellCard
-                        spell={item}
-                    />
+                    <SpellCard spell={item} />
                 )}
             />
+
         </SafeAreaView>
     );
 }
