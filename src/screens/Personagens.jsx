@@ -16,27 +16,23 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { getCharacters } from "../services/api";
 
-// ─── Cores das casas ──────────────────────────────────────────────────────────
 const HOUSE_COLORS = {
     Grifinória: "#AE0001",
     Sonserina: "#1A472A",
     Corvinal: "#0E1A40",
     Lufa: "#ECB939",
 };
-
 const HOUSE_ACCENT = {
     Grifinória: "#FFD700",
     Sonserina: "#5D8C61",
     Corvinal: "#5B7DB1",
     Lufa: "#ECB939",
 };
-
 const ALL_HOUSES = ["Todas", "Grifinória", "Sonserina", "Corvinal", "Lufa"];
 
-// ─── Componente de card de personagem ────────────────────────────────────────
+//  Componente de card de personagem
 function CharacterCard({ character, onPress }) {
     const houseColor = HOUSE_COLORS[character.hogwartsHouse] ?? "#2C2C2C";
-
     return (
         <TouchableOpacity
             style={styles.card}
@@ -73,12 +69,11 @@ function CharacterCard({ character, onPress }) {
     );
 }
 
-// ─── Modal de detalhes do personagem ─────────────────────────────────────────
+//  Modal de detalhes do personagem 
 function CharacterModal({ character, onClose }) {
     if (!character) return null;
     const houseColor = HOUSE_COLORS[character.hogwartsHouse] ?? "#2C2C2C";
     const accent = HOUSE_ACCENT[character.hogwartsHouse] ?? "#D4AF37";
-
     return (
         <Modal
             visible={!!character}
@@ -174,7 +169,7 @@ function InfoRow({ icon, label, value, accent }) {
     );
 }
 
-// ─── Tela de Personagens ──────────────────────────────────────────────────────
+//  Tela de Personagens
 export default function PersonagensScreen() {
     const [characters, setCharacters] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -187,7 +182,7 @@ export default function PersonagensScreen() {
     const [selectedChar, setSelectedChar] = useState(null);
     const PAGE_SIZE = 20;
 
-    // ── Busca personagens ─────────────────────────────────────────────────────
+    //  Busca personagens
     const fetchCharacters = useCallback(
         async (pageNum = 0, append = false) => {
             try {
@@ -211,7 +206,7 @@ export default function PersonagensScreen() {
         fetchCharacters(0);
     }, []);
 
-    // ── Filtros ───────────────────────────────────────────────────────────────
+    //  Filtros 
     useEffect(() => {
         let result = [...characters];
 
@@ -232,8 +227,7 @@ export default function PersonagensScreen() {
 
         setFiltered(result);
     }, [characters, search, selectedHouse]);
-
-    // ── Paginação ─────────────────────────────────────────────────────────────
+    //  Paginação 
     const loadMore = () => {
         if (loadingMore || !hasMore) return;
         setLoadingMore(true);
@@ -251,8 +245,6 @@ export default function PersonagensScreen() {
             />
         );
     };
-
-    // ── Loading inicial ───────────────────────────────────────────────────────
     if (loading) {
         return (
             <SafeAreaView style={styles.safeArea}>
@@ -268,13 +260,11 @@ export default function PersonagensScreen() {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-            {/* ── Cabeçalho ─────────────────────────────────────────── */}
+            
             <View style={styles.header}>
                 <Text style={styles.eyebrow}>HARRY POTTER APP</Text>
                 <Text style={styles.title}>Personagens</Text>
             </View>
-
-            {/* ── Barra de Busca ────────────────────────────────────── */}
             <View style={styles.searchContainer}>
                 <Ionicons
                     name="search-outline"
@@ -301,7 +291,7 @@ export default function PersonagensScreen() {
                 )}
             </View>
 
-            {/* ── Filtro de Casas ───────────────────────────────────── */}
+            {/*  Filtro de Casas */}
             <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -338,7 +328,7 @@ export default function PersonagensScreen() {
                 })}
             </ScrollView>
 
-            {/* ── Contador ─────────────────────────────────────────── */}
+            {/*  Contador*/}
             <View style={styles.countRow}>
                 <Text style={styles.countText}>
                     {filtered.length} personagen
@@ -347,7 +337,7 @@ export default function PersonagensScreen() {
                 </Text>
             </View>
 
-            {/* ── Grade de Personagens ──────────────────────────────── */}
+            {/*  Grade de Personagens */}
             <FlatList
                 data={filtered}
                 keyExtractor={(item) => String(item.index)}
@@ -380,7 +370,7 @@ export default function PersonagensScreen() {
                 )}
             />
 
-            {/* ── Modal de Detalhes ─────────────────────────────────── */}
+            {/*  Modal de Detalhes */}
             <CharacterModal
                 character={selectedChar}
                 onClose={() => setSelectedChar(null)}
@@ -389,7 +379,7 @@ export default function PersonagensScreen() {
     );
 }
 
-// ─── Estilos ──────────────────────────────────────────────────────────────────
+//  Estilos
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
@@ -407,7 +397,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
 
-    // ── Cabeçalho ─────────────────────────────────────────────────────────────
+    //  Cabeçalho
     header: {
         paddingHorizontal: 20,
         paddingTop: 20,
@@ -426,7 +416,7 @@ const styles = StyleSheet.create({
         color: "#EAD7BA",
     },
 
-    // ── Busca ─────────────────────────────────────────────────────────────────
+    //  Busca
     searchContainer: {
         flexDirection: "row",
         alignItems: "center",
@@ -446,7 +436,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
 
-    // ── Filtros de casa ───────────────────────────────────────────────────────
+    //  Filtros de casa
     houseFilters: {
         paddingHorizontal: 20,
         gap: 8,
@@ -470,7 +460,7 @@ const styles = StyleSheet.create({
         fontFamily: "PlusJakartaSansBold",
     },
 
-    // ── Contador ──────────────────────────────────────────────────────────────
+    //  Contador
     countRow: {
         paddingHorizontal: 20,
         paddingVertical: 10,
@@ -481,7 +471,7 @@ const styles = StyleSheet.create({
         color: "#EAD7BA60",
     },
 
-    // ── Grade ─────────────────────────────────────────────────────────────────
+    //  Grade
     grid: {
         paddingHorizontal: 12,
         paddingBottom: 20,
@@ -491,7 +481,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
 
-    // ── Card ──────────────────────────────────────────────────────────────────
+    //  Card
     card: {
         flex: 1,
         borderRadius: 14,
@@ -532,7 +522,7 @@ const styles = StyleSheet.create({
         color: "#EAD7BA70",
     },
 
-    // ── Empty ─────────────────────────────────────────────────────────────────
+    //  Empty
     emptyContainer: {
         alignItems: "center",
         paddingTop: 60,
@@ -544,7 +534,7 @@ const styles = StyleSheet.create({
         color: "#EAD7BA50",
     },
 
-    // ── Modal ─────────────────────────────────────────────────────────────────
+    //  Modal
     modalOverlay: {
         flex: 1,
         backgroundColor: "#00000099",

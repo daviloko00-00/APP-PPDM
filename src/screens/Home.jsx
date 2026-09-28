@@ -146,7 +146,6 @@ export default function HomeScreen() {
                 style={styles.scroll}
                 showsVerticalScrollIndicator={false}
             >
-                {/* ── Cabeçalho ────────────────────────────────────── */}
                 <View style={styles.container}>
                     <View style={styles.heading}>
                         <Text style={styles.eyebrow}>HARRY POTTER APP</Text>
