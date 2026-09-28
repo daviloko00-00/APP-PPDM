@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 
+import TabNavigator from "./src/components/TabNAvigator";
 import {
     PlayfairDisplay_400Regular,
     PlayfairDisplay_700Bold,
@@ -14,7 +15,6 @@ import {
     PlusJakartaSans_700Bold,
 } from "@expo-google-fonts/plus-jakarta-sans";
 
-import TabNavigator from "./src/navigation/TabNavigator";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
